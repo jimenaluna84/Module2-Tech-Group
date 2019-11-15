@@ -1,0 +1,19 @@
+import java.util.LinkedList;
+import java.util.ListIterator;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        LinkedList<Estudiante> lista = new LinkedList<Estudiante>();
+        lista.add(new Estudiante("Juan", 85));
+        lista.add(new Estudiante("Maria", 45));
+        lista.add(new Estudiante("Pedro", 51));
+        ListIterator<Estudiante> iterador = lista.listIterator();
+
+        while (iterador.hasNext()) {
+            Estudiante e = iterador.next();
+            System.out.println(e.getNombre());
+        }
+    }
+}
