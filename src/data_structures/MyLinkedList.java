@@ -35,7 +35,6 @@ public class MyLinkedList<T> implements List<T> {
         this.size = size;
     }
 
-
     public MyLinkedList<String> insert(MyLinkedList list, String data) {
         // Create a new node with given data
         Node new_node = new Node(data);
