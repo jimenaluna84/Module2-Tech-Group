@@ -11,6 +11,10 @@ public class MyLinkedList<T> implements List<T> {
     private Node last;
     private Integer size;
 
+    public MyLinkedList() {
+        this.size = 0;
+    }
+
     public Node getFirst() {
         return first;
     }
@@ -141,119 +145,152 @@ public class MyLinkedList<T> implements List<T> {
 
 
     @Override
-        public int size () {
-            return 0;
+    public int size() {
+        return size;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public boolean contains(Object o) {
+        return false;
+    }
+
+    @Override
+    public Iterator iterator() {
+        return null;
+    }
+
+    @Override
+    public Object[] toArray() {
+        return new Object[0];
+    }
+
+    @Override
+    public boolean add(T valueNode) {
+
+        Node node = new Node(valueNode);
+        if (first == null) {
+            first = node;
+            last = node;
+            size++;
+            return true;
+        } else {
+            this.last.setNext(node);
+            last = node;
+            size++;
+            return true;
         }
+    }
 
-        @Override
-        public boolean isEmpty () {
-            return false;
-        }
+    @Override
+    public boolean remove(Object o) {
+        return false;
+    }
 
-        @Override
-        public boolean contains (Object o){
-            return false;
-        }
+    @Override
+    public boolean addAll(Collection c) {
+        return false;
+    }
 
-        @Override
-        public Iterator iterator () {
-            return null;
-        }
+    @Override
+    public boolean addAll(int index, Collection c) {
+        return false;
+    }
 
-        @Override
-        public Object[] toArray () {
-            return new Object[0];
-        }
+    @Override
+    public void clear() {
 
-        @Override
-        public boolean add (Object o){
-            return false;
-        }
+        Node previus = first;
+        Node store;
 
-        @Override
-        public boolean remove (Object o){
-            return false;
-        }
-
-        @Override
-        public boolean addAll (Collection c){
-            return false;
-        }
-
-        @Override
-        public boolean addAll ( int index, Collection c){
-            return false;
-        }
-
-        @Override
-        public void clear () {
-
-        }
-
-        @Override
-        public T get ( int index){
-            return null;
-        }
-
-        @Override
-        public Object set ( int index, Object element){
-            return null;
-        }
-
-        @Override
-        public void add ( int index, Object element){
-
-        }
-
-        @Override
-        public T remove ( int index){
-            return null;
-        }
-
-        @Override
-        public int indexOf (Object o){
-            return 0;
-        }
-
-        @Override
-        public int lastIndexOf (Object o){
-            return 0;
-        }
-
-        @Override
-        public ListIterator listIterator () {
-            return null;
-        }
-
-        @Override
-        public ListIterator listIterator ( int index){
-            return null;
-        }
-
-        @Override
-        public List subList ( int fromIndex, int toIndex){
-            return null;
-        }
-
-        @Override
-        public boolean retainAll (Collection c){
-            return false;
-        }
-
-        @Override
-        public boolean removeAll (Collection c){
-            return false;
-        }
-
-        @Override
-        public boolean containsAll (Collection c){
-            return false;
-        }
-
-        @Override
-        public Object[] toArray (Object[]a){
-            return new Object[0];
+        while (previus != null) {
+            store = previus.getNext();
+            previus = null;
+            previus = store;
         }
 
 
     }
+
+    @Override
+    public T get(int index) {
+
+        Node<T> current = first;
+
+        if (index > size || index < 0) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        for (int i = 0; i < index; i++) {
+            current = current.getNext();
+        }
+        return current.getValue();
+
+    }
+
+    @Override
+    public Object set(int index, Object element) {
+        return null;
+    }
+
+    @Override
+    public void add(int index, Object element) {
+
+    }
+
+    @Override
+    public T remove(int index) {
+        return null;
+    }
+
+    @Override
+    public int indexOf(Object o) {
+        return 0;
+    }
+
+    @Override
+    public int lastIndexOf(Object o) {
+        return 0;
+    }
+
+    @Override
+    public ListIterator listIterator() {
+        return null;
+    }
+
+    @Override
+    public ListIterator listIterator(int index) {
+        return null;
+    }
+
+    @Override
+    public List subList(int fromIndex, int toIndex) {
+        return null;
+    }
+
+    @Override
+    public boolean retainAll(Collection c) {
+        return false;
+    }
+
+    @Override
+    public boolean removeAll(Collection c) {
+        return false;
+    }
+
+    @Override
+    public boolean containsAll(Collection c) {
+        return false;
+    }
+
+    @Override
+    public Object[] toArray(Object[] a) {
+        return new Object[0];
+    }
+
+
+}
