@@ -40,19 +40,30 @@ public class MyLinkedListTest {
         assertEquals("Blanco", myLinkedList.get(4));
 
     }
+
     @Test
-    public void verifyDeleteNode() {
+    public void verifyDelete(Integer position) {
         MyLinkedList myLinkedList = new MyLinkedList();
         myLinkedList.add("Rojo");
         myLinkedList.add("Amarillo");
         myLinkedList.add("Azul");
         myLinkedList.add("Verde");
         myLinkedList.add("Blanco");
-        assertEquals("Rojo", myLinkedList.remove(0));
-        assertEquals("Amarillo", myLinkedList.get(1));
-        assertEquals("Azul", myLinkedList.get(2));
-        assertEquals("Verde", myLinkedList.get(3));
-        assertEquals("Blanco", myLinkedList.get(4));
+        myLinkedList.clear();
+        assertEquals(0, myLinkedList.size());
+
+    }
+
+    @Test
+    public void verifyClearMYLinkedList() {
+        MyLinkedList myLinkedList = new MyLinkedList();
+        myLinkedList.add("Rojo");
+        myLinkedList.add("Amarillo");
+        myLinkedList.add("Azul");
+        myLinkedList.add("Verde");
+        myLinkedList.add("Blanco");
+        myLinkedList.clear();
+        assertEquals(0, myLinkedList.size());
 
     }
 

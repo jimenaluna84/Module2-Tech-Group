@@ -188,6 +188,19 @@ public class MyLinkedList<T> implements List<T> {
 
     @Override
     public boolean remove(Object o) {
+//        ExtendedLinkedList<Integer> list = new ExtendedLinkedList();
+//        int index = 0;
+//        while (index < list.size()) {
+//            Integer eLL = list.get(index);
+//            if (eLL.equals(x)) {
+//                list.removeAll((Integer) x);
+//            } else {
+//                index++;
+//            }
+//
+//
+//        }
+
         return false;
     }
 
@@ -201,19 +214,38 @@ public class MyLinkedList<T> implements List<T> {
         return false;
     }
 
+//    @Override
+//    public void clearML() {
+//
+//        Node previus = first;
+//        Node store;
+//
+//        while (previus != null) {
+//            store = previus.getNext();
+//            previus = null;
+//            previus = store;
+//        }
+//
+//
+//    }
+
     @Override
     public void clear() {
 
-        Node previus = first;
-        Node store;
+        // Clearing all of the links between nodes is "unnecessary", but:
+        // - helps a generational GC if the discarded nodes inhabit
+        //   more than one generation
+        // - is sure to free memory even if there is a reachable Iterator
 
-        while (previus != null) {
-            store = previus.getNext();
-            previus = null;
-            previus = store;
+        for (Node x = first; x != null; ) {
+            Node next = x.getNext();
+            x.setValue(null);
+            x.setNext(null);
+            x.setPrevius(null);
+            x = next;
         }
-
-
+        first = last = null;
+        size = 0;
     }
 
     @Override
