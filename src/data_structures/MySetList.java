@@ -8,7 +8,7 @@ public class MySetList<T> {
     static final int INIT_ARRAY_SIZE = 10;
     private int INDEX_SIZE = INIT_ARRAY_SIZE;
     private int indexSize;
-    private int LIST_SIZE_LIMIT;
+    private int LIST_SIZE_LIMIT = 10;
 
 
 // Constructors
@@ -29,8 +29,9 @@ public class MySetList<T> {
     }
 
     private void initArrayLists(DoublyCircularLinkedList<T>[] indexList) {
-
-
+        for (int i=0;i<indexList.length;i++) {
+            indexList[i] = new DoublyCircularLinkedList<>();
+        }
     }
 
     public boolean add(String newValue) {
@@ -45,21 +46,28 @@ public class MySetList<T> {
         }
 
         DoublyCircularLinkedList<T> currentList = this.indexList[hashKey];
-        currentList.add(newValue);
-        if (currentList.size() > LIST_SIZE_LIMIT) {
-            this.rearrangeSet();
+        if (null == currentList && currentList.size() < LIST_SIZE_LIMIT ){
+            currentList.add(newValue);
+        }
+        else{
+                DoublyCircularLinkedList<T>[] newList = this.rearrangeSet();
+                int positionInsert = searchPositionInsert(newList,hashKey);
+                newList[positionInsert].add(newValue);
         }
         return true;
     }
 
-    private void rearrangeSet() {
-        this.indexSize *= 2;
-        DoublyCircularLinkedList<T>[] newIndex = new DoublyCircularLinkedList[this.indexSize];
-        initArrayLists((newIndex));
-        for (int i = 0; i < indexSize; i++) {
+    private DoublyCircularLinkedList<T>[] rearrangeSet() {
+        this.indexSize = indexList.length*2;
+        DoublyCircularLinkedList<T>[] newList= new DoublyCircularLinkedList[this.indexSize];
+        initArrayLists(newList);
 
 
+        for (int i = 0; i < indexList.length; i++) {
+            newList[i] = indexList[i];
         }
+        return newList;
+
     }
 
     private int getHashCode(T value) {
@@ -70,25 +78,24 @@ public class MySetList<T> {
     }
 
 
-    public boolean contains(T newValue) {
+    public boolean contains(DoublyCircularLinkedList<T> list, T newValue) {
         int hashKey = this.getHashCode(newValue) % this.getIndexSize();
         return contains(newValue, hashKey);
     }
 
     private boolean contains(T newValue, int hashKey) {
         DoublyCircularLinkedList<T> currentList = indexList[hashKey];
-
-        if (currentList == null) {
-            return false;
-
-        } else {
+        boolean containsValue = false;
+        if (null != currentList) {
+//            return false;
+//        } else {
 
             if (currentList.contains(newValue)) {
-                return true;
+                containsValue =  true;
             }
 
         }
-
+        return containsValue;
 
     }
 
@@ -108,6 +115,21 @@ public class MySetList<T> {
         } else {
             return indexList[index];
         }
+    }
+
+    public int searchPositionInsert( DoublyCircularLinkedList<T> list[], int position){
+        int newPosition = position;
+        if (null != list){
+            int i =position;
+            while (i<list.length){
+                if(list[i].size() < LIST_SIZE_LIMIT){
+                    newPosition = i;
+                    i=list.length;
+                }
+                i+=10;
+            }
+        }
+        return newPosition;
     }
 
 
