@@ -19,7 +19,7 @@ public class MySetListTest {
         mySetList.add("Maria");
         mySetList.add("Tesoro");
 
-        System.out.println("datoo: " + mySetList.get(4).get(0));
+        System.out.println("datoo: " + mySetList.get(5).toString());
 
 //        assertTrue("No contains the element", mySetList.contains(5));
 //        assertTrue("No contains the element", mySetList.contains(6));

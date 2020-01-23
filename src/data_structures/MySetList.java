@@ -46,13 +46,12 @@ public class MySetList<T> {
         }
 
         DoublyCircularLinkedList<T> currentList = this.indexList[hashKey];
-        if (null == currentList && currentList.size() < LIST_SIZE_LIMIT ){
+        if (null == currentList || currentList.size() < LIST_SIZE_LIMIT) {
             currentList.add(newValue);
-        }
-        else{
-                DoublyCircularLinkedList<T>[] newList = this.rearrangeSet();
-                int positionInsert = searchPositionInsert(newList,hashKey);
-                newList[positionInsert].add(newValue);
+        } else {
+            DoublyCircularLinkedList<T>[] newList = this.rearrangeSet();
+            int positionInsert = searchPositionInsert(newList, hashKey);
+            newList[positionInsert].add(newValue);
         }
         return true;
     }
