@@ -105,5 +105,6 @@ public class DoublyCircularLinkedList<T> {
         }
         return result.append("]").toString();
     }
+
 }
 
