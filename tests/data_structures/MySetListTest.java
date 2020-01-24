@@ -17,9 +17,16 @@ public class MySetListTest {
     public void testAddHashAddSuccess() {
         MySetList<Integer> mySetList = new MySetList();
         mySetList.add("Maria");
-        mySetList.add("Tesoro");
+        mySetList.add("daria");
+        mySetList.add("laria");
+        mySetList.add("baria");
+        mySetList.add("bario");
+        mySetList.add("barin");
+        mySetList.add("tesoro");
+        mySetList.add("Teresa");
 
         System.out.println("datoo: " + mySetList.get(5).toString());
+        System.out.println("dato fuera del tamanio: " + mySetList.get(15).toString());
 
 //        assertTrue("No contains the element", mySetList.contains(5));
 //        assertTrue("No contains the element", mySetList.contains(6));

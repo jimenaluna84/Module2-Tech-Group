@@ -8,7 +8,7 @@ public class MySetList<T> {
     static final int INIT_ARRAY_SIZE = 10;
     private int INDEX_SIZE = INIT_ARRAY_SIZE;
     private int indexSize;
-    private int LIST_SIZE_LIMIT = 10;
+    private int LIST_SIZE_LIMIT = 3;
 
 
 // Constructors
@@ -49,23 +49,24 @@ public class MySetList<T> {
         if (null == currentList || currentList.size() < LIST_SIZE_LIMIT) {
             currentList.add(newValue);
         } else {
-            DoublyCircularLinkedList<T>[] newList = this.rearrangeSet();
-            int positionInsert = searchPositionInsert(newList, hashKey);
-            newList[positionInsert].add(newValue);
+            DoublyCircularLinkedList<T>[] newArray = this.rearrangeSet();
+            int positionInsert = searchPositionInsert(newArray, hashKey);
+            newArray[positionInsert].add(newValue);
+            this.indexList = newArray;
         }
         return true;
     }
 
     private DoublyCircularLinkedList<T>[] rearrangeSet() {
-        this.indexSize = indexList.length*2;
-        DoublyCircularLinkedList<T>[] newList= new DoublyCircularLinkedList[this.indexSize];
-        initArrayLists(newList);
+        this.indexSize = indexList.length * 2;
+        DoublyCircularLinkedList<T>[] newArrayList = new DoublyCircularLinkedList[this.indexSize];
+        initArrayLists(newArrayList);
 
 
         for (int i = 0; i < indexList.length; i++) {
-            newList[i] = indexList[i];
+            newArrayList[i] = indexList[i];
         }
-        return newList;
+        return newArrayList;
 
     }
 
@@ -109,23 +110,23 @@ public class MySetList<T> {
 
 
     public DoublyCircularLinkedList<T> get(int index) {
-        if (INIT_ARRAY_SIZE < index) {
+        if (indexList.length < index) {
             throw new ArrayIndexOutOfBoundsException("Error.... index out the range");
         } else {
-            return indexList[index];
+            return this.indexList[index];
         }
     }
 
-    public int searchPositionInsert( DoublyCircularLinkedList<T> list[], int position){
+    public int searchPositionInsert(DoublyCircularLinkedList<T> newArrayList[], int position) {
         int newPosition = position;
-        if (null != list){
-            int i =position;
-            while (i<list.length){
-                if(list[i].size() < LIST_SIZE_LIMIT){
+        if (null != newArrayList) {
+            int i = position;
+            while (i < newArrayList.length) {
+                if (newArrayList[i].size() < LIST_SIZE_LIMIT) {
                     newPosition = i;
-                    i=list.length;
+                    i = newArrayList.length;
                 }
-                i+=10;
+                i += 10;
             }
         }
         return newPosition;
