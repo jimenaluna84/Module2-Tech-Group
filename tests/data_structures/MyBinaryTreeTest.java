@@ -63,5 +63,22 @@ public class MyBinaryTreeTest {
         assertTrue(myTree.contains(3));
     }
 
+    @Test
+    public void printNodes() {
+        MyBinaryTree myTree = new MyBinaryTree();
 
+
+        myTree.add(8);
+        myTree.add(10);
+        myTree.add(6);
+        myTree.add(2);
+        myTree.add(5);
+        myTree.add(7);
+        myTree.add(9);
+        myTree.add(3);
+
+
+        assertEquals("[2,3,4,6,7,8,9,10]", myTree.printString());
+
+    }
 }

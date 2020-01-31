@@ -93,5 +93,20 @@ public class MyBinaryTree {
                 : contains(current.getRight(), value);
 
     }
+
+    private String toStringTest(NodeBT root) {
+        String result = "";
+        if (root == null)
+            return "";
+        result += toStringTest(root.getLeft()) +",";
+        result += toStringTest(root.getRight())+",";
+        result += root.getValue();
+        return result;
+    }
+
+    public String printString() {
+        return  "["+ toStringTest(root);
+    }
+
 }
 
