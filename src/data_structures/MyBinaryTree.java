@@ -98,14 +98,22 @@ public class MyBinaryTree {
         String result = "";
         if (root == null)
             return "";
-        result += toStringTest(root.getLeft()) +",";
-        result += toStringTest(root.getRight())+",";
-        result += root.getValue();
+
+
+
+        result += toStringTest(root.getLeft());
+
+        result += root.getValue()+",";
+
+        result += toStringTest(root.getRight());
+
+
+
         return result;
     }
 
     public String printString() {
-        return  "["+ toStringTest(root);
+        return "[" + toStringTest(root)+ "]";
     }
 
 }
