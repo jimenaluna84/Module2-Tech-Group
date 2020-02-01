@@ -113,7 +113,9 @@ public class MyBinaryTree {
     }
 
     public String printString() {
-        return "[" + toStringTest(root)+ "]";
+        String data = toStringTest(root);
+        data = data.substring(0, data.length() - 1);
+        return "[" + data + "]";
     }
 
 }
