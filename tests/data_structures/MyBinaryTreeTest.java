@@ -77,8 +77,42 @@ public class MyBinaryTreeTest {
         myTree.add(4);
 
 
-
         assertEquals("[2,3,4,6,7,8,9,10]", myTree.printString());
 
     }
+
+    @Test
+    public void remove() {
+        MyBinaryTree myTree = new MyBinaryTree();
+
+        myTree.add(15);
+        myTree.add(6);
+        myTree.add(20);
+        myTree.add(9);
+        myTree.add(8);
+        myTree.add(10);
+        myTree.add(7);
+        myTree.add(5);
+        myTree.add(3);
+        myTree.add(18);
+        myTree.add(16);
+        myTree.add(19);
+        myTree.add(27);
+        myTree.add(22);
+        myTree.add(21);
+        myTree.add(30);
+
+
+//        myTree.remove(8):
+//        myTree.remove(6):
+//        myTree.remove(10):
+        System.out.println(myTree.printString());
+        myTree.remove(20);
+        System.out.println(myTree.printString());
+
+        assertEquals("[3,5,6,7,8,9,10,15,16,18,19,21,22,27,30]", myTree.printString());
+
+    }
+
+
 }

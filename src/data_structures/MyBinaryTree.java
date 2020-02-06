@@ -94,19 +94,49 @@ public class MyBinaryTree {
 
     }
 
+    public boolean deleteElement(NodeBT current, int value, NodeBT nodeFather) {
+
+        if (current != null) {
+            if (value == current.getValue()) {
+                if (current.getRight() != null && current.getLeft() != null) {
+                    current.setValue(deleteHoja(current.getRight(), null));
+                } else {
+                    nodeFather.setLeft(null);
+                }
+                return true;
+            }
+            if (value < current.getValue()) {
+                return deleteElement(current.getLeft(), value, current);
+            } else {
+                return deleteElement(current.getRight(), value, current);
+            }
+        }
+        return false;
+
+    }
+
+    private int deleteHoja(NodeBT current, NodeBT nodeFather) {
+
+        if (current.getLeft() == null && current.getRight() == null) {
+            int data = current.getValue();
+            nodeFather.setLeft(null);
+            return data;
+        }
+        return deleteHoja(current.getLeft(), current);
+    }
+
+
     private String toStringTest(NodeBT root) {
         String result = "";
         if (root == null)
             return "";
 
 
-
         result += toStringTest(root.getLeft());
 
-        result += root.getValue()+",";
+        result += root.getValue() + ",";
 
         result += toStringTest(root.getRight());
-
 
 
         return result;
@@ -117,6 +147,28 @@ public class MyBinaryTree {
         data = data.substring(0, data.length() - 1);
         return "[" + data + "]";
     }
+
+//    public Boolean remove(Object value) {
+//        Boolean res = false;
+//        if (root == null) {
+//            return res;
+//        }
+//        if (root.getValue() == value){
+//
+//
+//        }
+//
+//    }
+
+    public boolean remove(int value) {
+//        boolean res = false;
+        if (root == null) {
+            return false;
+        } else {
+            return deleteElement(root, value, null);
+        }
+    }
+
 
 }
 
